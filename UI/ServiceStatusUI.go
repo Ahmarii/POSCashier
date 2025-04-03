@@ -127,7 +127,7 @@ func (u *UIManager) RFIDStatusUI(parent *core.Frame) {
 		s.Border.Radius = styles.BorderRadiusExtraSmall
 
 	})
-	u.RFID_Chooser = core.NewChooser(RFIDStatusFrame_StatusBarFrame).SetPlaceholder("No Ports")
+	u.RFID_Chooser = core.NewChooser(RFIDStatusFrame_StatusBarFrame)
 	u.RFID_Chooser.SetName("Chooser")
 	u.RFID_Chooser.Styler(func(s *styles.Style) {
 		s.Background = colors.Scheme.Secondary.On

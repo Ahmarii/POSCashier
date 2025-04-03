@@ -16,13 +16,10 @@ func (m *MANAGER) InitProcess() {
 	m.ui = UI.UIManager{}
 
 	m.ui.InitUI()
+	m.LogicUISetup()
 
-	m.UILogicSetup()
-	go m.UILogicLoop()
-	// go func() {
-	// 	time.Sleep(time.Second)
-	// 	m.logic.RFIDstatus = true
-	// 	m.logic.PortNames = append(m.logic.PortNames, &enumerator.PortDetails{Name: "GG"})
-	// }()
+	go m.LogicUILoop()
+	go m.logic.LogicAsync()
+
 	m.ui.RunUI()
 }

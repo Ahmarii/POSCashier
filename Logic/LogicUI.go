@@ -8,14 +8,18 @@ import (
 	"cogentcore.org/core/styles"
 )
 
-func (m *MANAGER) UILogicSetup() {
+func (m *MANAGER) LogicUISetup() {
 	m.ServiceStatusLogic()
 }
 
-func (m *MANAGER) UILogicLoop() {
+func (m *MANAGER) LogicUILoop() {
 	for range time.Tick(time.Second) {
+		//RFID Async update
 		m.ui.AsyncUpdateElement(&m.ui.RFID_StatusFrame.WidgetBase)
 		m.ui.AsyncUpdateElement(&m.ui.RFID_Chooser.WidgetBase)
+		if !m.logic.RFIDstatus {
+			m.logic.PortNamesIndex = m.ui.RFID_Chooser.CurrentIndex
+		}
 	}
 }
 
@@ -35,12 +39,14 @@ func (m *MANAGER) ServiceStatusLogic() {
 	})
 
 	RFID_Chooser.Updater(func() {
+
 		if len(m.logic.PortNames) > 0 {
-			println(12312)
 			RFID_Chooser.Items = make([]core.ChooserItem, len(m.logic.PortNames))
 			for i, port := range m.logic.PortNames {
 				RFID_Chooser.Items[i] = core.ChooserItem{Value: port.Name}
-				//println(i, port)
+			}
+			if m.logic.RFIDstatus {
+				RFID_Chooser.SetPlaceholder(m.logic.PortNames[m.logic.PortNamesIndex].Name)
 			}
 		} else {
 			RFID_Chooser.SetPlaceholder("No Ports")
