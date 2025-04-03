@@ -8,8 +8,8 @@ import (
 )
 
 func (u *UIManager) ItemUI(parent *core.Frame) {
-	itemFrame := u.NewFrameZero(parent, units.Pw(100), units.Dp(758))
-	itemFrame.Styler(func(s *styles.Style) {
+	u.ItemsFrame = u.NewFrameZero(parent, units.Pw(100), units.Dp(758))
+	u.ItemsFrame.Styler(func(s *styles.Style) {
 		s.Grow.Set(1, 1)
 		s.Overflow.Y = styles.OverflowAuto
 		s.Justify.Content = styles.Center
@@ -17,7 +17,7 @@ func (u *UIManager) ItemUI(parent *core.Frame) {
 		s.Border.Radius = styles.BorderRadiusExtraSmall
 	})
 
-	left_split_item := u.NewFrameZero(itemFrame, units.Pw(100), units.Ph(100))
+	left_split_item := u.NewFrameZero(u.ItemsFrame, units.Pw(100), units.Ph(100))
 	left_split_item.Styler(func(s *styles.Style) {
 		s.Display = styles.Grid
 		s.Columns = 4
@@ -29,4 +29,5 @@ func (u *UIManager) ItemUI(parent *core.Frame) {
 		s.Justify.Items = styles.Center
 		s.Border.Radius = styles.BorderRadiusExtraSmall
 	})
+
 }

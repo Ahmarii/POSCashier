@@ -8,9 +8,14 @@ import (
 )
 
 type UIManager struct {
-	Body             *core.Body
+	Body *core.Body
+
 	RFID_StatusFrame *core.Frame
 	RFID_Chooser     *core.Chooser
+
+	ItemsFrame *core.Frame
+
+	ActionFrame *core.Frame
 }
 
 func (u *UIManager) InitUI() {
@@ -19,6 +24,7 @@ func (u *UIManager) InitUI() {
 	splitFrame := u.NewFrameZero(u.Body, units.Pw(100), units.Pw(100))
 	splitFrame.Styler(func(s *styles.Style) {
 		s.Display = styles.Flex
+		s.Min.Set(units.Pw(0), units.Pw(0))
 		s.Gap = units.XY{X: units.Em(0.5), Y: units.Em(0.5)}
 		s.Grow.Set(1, 1)
 	})
@@ -34,13 +40,14 @@ func (u *UIManager) RunUI() {
 func (u *UIManager) LeftUI(splitFrame *core.Frame) {
 	leftFrame := u.NewFrameZero(splitFrame, units.Pw(70), units.Ph(100))
 	leftFrame.Styler(func(s *styles.Style) {
-		s.Background = colors.Scheme.Primary.Base
+		//s.Background = colors.Scheme.Primary.Base
 		s.Direction = styles.Column
 		s.Gap = units.XY{X: units.Em(0.5), Y: units.Em(0.5)}
 	})
 
 	u.ServiceStatusUI(leftFrame)
 	u.ItemUI(leftFrame)
+	u.ActionUI(leftFrame)
 }
 
 func (u *UIManager) RightUI(splitFrame *core.Frame) {

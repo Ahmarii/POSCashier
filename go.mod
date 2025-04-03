@@ -5,7 +5,6 @@ go 1.23.1
 require (
 	cogentcore.org/core v0.3.8
 	go.bug.st/serial v1.6.4
-	periph.io/x/host/v3 v3.8.4
 )
 
 require (
@@ -32,5 +31,4 @@ require (
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
-	periph.io/x/conn/v3 v3.7.2 // indirect
 )

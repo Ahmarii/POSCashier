@@ -80,6 +80,7 @@ func (logic *LogicManager) RFIDListenSerial(port serial.Port) {
 					if len(cleanMsg) == 0 {
 						continue
 					}
+					//println(cleanMsg)
 					// Only print if different from last received ID
 					if cleanMsg != lastReceivedID {
 						println(cleanMsg)

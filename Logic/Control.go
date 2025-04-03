@@ -15,10 +15,12 @@ func (m *MANAGER) InitProcess() {
 	m.data = DATA.DataManager{}
 	m.ui = UI.UIManager{}
 
+	m.data.DataInit()
 	m.ui.InitUI()
 	m.LogicUISetup()
 
 	go m.LogicUILoop()
+	go m.data.FetchAllProduct()
 	go m.logic.LogicAsync()
 
 	m.ui.RunUI()

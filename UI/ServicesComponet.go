@@ -11,7 +11,7 @@ func (u *UIManager) ServiceStatusUI(parent *core.Frame) {
 	serviceStatusFrame := u.NewFrameZero(parent, units.Pw(100), units.Dp(80))
 	serviceStatusFrame.Styler(func(s *styles.Style) {
 		s.Display = styles.Flex
-		s.Background = colors.Scheme.Secondary.OnContainer
+		//s.Background = colors.Scheme.Secondary.OnContainer
 	})
 
 	u.FiberStatusUI(serviceStatusFrame)
