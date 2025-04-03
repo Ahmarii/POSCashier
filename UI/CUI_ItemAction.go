@@ -7,9 +7,9 @@ import (
 	"cogentcore.org/core/styles/units"
 )
 
-func (u *UIManager) ActionUI(parent *core.Frame) {
-	u.ActionFrame = u.NewFrameZero(parent, units.Pw(100), units.Dp(125.5))
-	u.ActionFrame.Styler(func(s *styles.Style) {
+func (u *UIManager) ItemActionUI(parent *core.Frame) {
+	u.ItemActionFrame = u.NewFrameZero(parent, units.Pw(100), units.Dp(125.5))
+	u.ItemActionFrame.Styler(func(s *styles.Style) {
 		s.Display = styles.Flex
 		s.Grow.Set(1, 1)
 		s.Background = colors.Scheme.Secondary.On
@@ -17,9 +17,10 @@ func (u *UIManager) ActionUI(parent *core.Frame) {
 		s.Align.Items = styles.Center
 		s.Justify.Content = styles.Center
 		s.Justify.Items = styles.Center
+		s.Gap = units.XY{X: units.Em(0.5), Y: units.Em(0.5)}
 	})
 
-	ProductByID_Field := core.NewTextField(u.ActionFrame).SetPlaceholder("Product ID")
+	ProductByID_Field := core.NewTextField(u.ItemActionFrame).SetPlaceholder("Product ID")
 	ProductByID_Field.Styler(func(s *styles.Style) {
 		u.SetZero(s)
 		u.SetSize(s, units.Dp(400), units.Dp(80))
@@ -31,7 +32,7 @@ func (u *UIManager) ActionUI(parent *core.Frame) {
 		s.Align.Items = styles.Center
 	})
 
-	ProductByID_ButtonFrame := u.NewFrameZero(u.ActionFrame, units.Dp(95), units.Dp(95))
+	ProductByID_ButtonFrame := u.NewFrameZero(u.ItemActionFrame, units.Dp(95), units.Dp(95))
 	ProductByID_ButtonFrame.Styler(func(s *styles.Style) {
 		s.Align.Content = styles.Center
 		s.Align.Items = styles.Center
@@ -41,16 +42,17 @@ func (u *UIManager) ActionUI(parent *core.Frame) {
 
 	ProductByID_Button := core.NewButton(ProductByID_ButtonFrame).SetType(core.ButtonAction).SetText("Add")
 	ProductByID_Button.Styler(func(s *styles.Style) {
-		s.Min.Set(units.Pw(100), units.Ph(100))
 		u.SetZero(s)
+		u.SetSize(s, units.Pw(100), units.Ph(100))
+
 		s.Background = colors.Scheme.Error.Container
 	})
 
-	Refresh_Button := core.NewButton(u.ActionFrame).SetType(core.ButtonAction).SetText("Refresh")
+	Refresh_Button := core.NewButton(u.ItemActionFrame).SetType(core.ButtonAction).SetText("Refresh")
 	Refresh_Button.SetName("Refresh_Button")
 	Refresh_Button.Styler(func(s *styles.Style) {
-		s.Min.Set(units.Dp(95), units.Dp(95))
 		u.SetZero(s)
+		u.SetSize(s, units.Dp(95), units.Dp(95))
 		s.Background = colors.Scheme.Error.Container
 	})
 }
