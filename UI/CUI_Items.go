@@ -17,8 +17,8 @@ func (u *UIManager) ItemUI(parent *core.Frame) {
 		s.Border.Radius = styles.BorderRadiusExtraSmall
 	})
 
-	left_split_item := u.NewFrameZero(u.ItemsFrame, units.Pw(100), units.Ph(100))
-	left_split_item.Styler(func(s *styles.Style) {
+	ItemPage := u.NewFrameZero(u.ItemsFrame, units.Pw(100), units.Ph(100))
+	ItemPage.Styler(func(s *styles.Style) {
 		s.Display = styles.Grid
 		s.Columns = 4
 		s.Grow.Set(1, 1)

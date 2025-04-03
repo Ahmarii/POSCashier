@@ -9,8 +9,19 @@ import (
 )
 
 func (u *UIManager) CartPageUI(parent *core.Frame) {
-	CartPageFrame := u.NewFrameZero(parent, units.Pw(100), units.Ph(100))
-	CartPageFrame.Styler(func(s *styles.Style) {
+
+	u.CartFrame = u.NewFrameZero(parent, units.Pw(100), units.Ph(100))
+	u.CartFrame.Styler(func(s *styles.Style) {
+		s.Grow.Set(1, 1)
+		s.Overflow.Y = styles.OverflowAuto
+		s.Justify.Content = styles.Center
+		s.Justify.Items = styles.Center
+		s.Border.Radius = styles.BorderRadiusExtraSmall
+	})
+
+	CartPage := u.NewFrameZero(u.CartFrame, units.Pw(100), units.Ph(100))
+	CartPage.SetName("CartPage")
+	CartPage.Styler(func(s *styles.Style) {
 		s.Direction = styles.Column
 		s.Grow.Set(1, 1)
 		s.Background = colors.Scheme.Secondary.On

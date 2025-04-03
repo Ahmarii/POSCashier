@@ -17,8 +17,11 @@ import (
 
 func (m *MANAGER) ItemsComponetLogic() {
 	ItemsFrame := m.ui.ItemsFrame.Child(0).(*core.Frame)
+
 	ItemsFrame.Maker(func(p *tree.Plan) {
+
 		tempItems := m.data.SortItems(m.data.Items, "name")
+
 		for id := range tempItems {
 			tree.AddAt(p, tempItems[id].ItemName, func(w *core.Frame) {
 				//w.SetType(core.ButtonAction).SetText(m.data.Items[i].ItemName)
@@ -102,6 +105,7 @@ func (m *MANAGER) ItemsComponetLogic() {
 
 				w.OnClick(func(e events.Event) {
 					m.data.AddCart(tempItems[id].ItemID, 1)
+					m.UpdateCart()
 				})
 				w.OnDoubleClick(func(e events.Event) {
 					w.Send(events.Click, e)

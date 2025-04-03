@@ -14,6 +14,7 @@ type UIManager struct {
 	RFID_Chooser     *core.Chooser
 
 	ItemsFrame *core.Frame
+	CartFrame  *core.Frame
 
 	ItemActionFrame *core.Frame
 }

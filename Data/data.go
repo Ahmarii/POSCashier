@@ -107,6 +107,39 @@ func (d *DataManager) SortItems(items map[int]Item, sortBy string) []Item {
 	return itemSlice
 }
 
+func (d *DataManager) SortOrder(Orders map[int]Order, sortBy string) []Order {
+	// Extract map values to a slice
+	//("before sort --------")
+	OrderSlice := make([]Order, 0, len(Orders))
+	for _, item := range Orders {
+		OrderSlice = append(OrderSlice, item)
+		//println(item.ItemName)
+	}
+	//println("after sort --------")
+	// Sort based on the specified field
+	switch sortBy {
+	case "id":
+		sort.Slice(OrderSlice, func(i, j int) bool {
+			return OrderSlice[i].OrderItemID < OrderSlice[j].OrderItemID
+		})
+	case "amount":
+		sort.Slice(OrderSlice, func(i, j int) bool {
+			return OrderSlice[i].OrderAmount < OrderSlice[j].OrderAmount
+		})
+	case "name":
+		sort.Slice(OrderSlice, func(i, j int) bool {
+			return OrderSlice[i].OrderItemName < OrderSlice[j].OrderItemName
+		})
+	default:
+		fmt.Println("Invalid sort option")
+	}
+
+	// for item := range OrderSlice {
+	// 	println(OrderSlice[item].ItemName)
+	// }
+	return OrderSlice
+}
+
 func (d *DataManager) FetchAllProduct() bool {
 	result, err := http.Get("http://127.0.0.1:8080/api/products")
 	if err != nil {

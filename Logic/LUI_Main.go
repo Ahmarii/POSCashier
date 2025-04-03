@@ -1,6 +1,7 @@
 package Logic
 
 import (
+	"strconv"
 	"time"
 
 	"cogentcore.org/core/colors"
@@ -13,6 +14,7 @@ func (m *MANAGER) LogicUISetup() {
 	m.ServiceComponetLogic()
 	m.ItemsComponetLogic()
 	m.ItemsActionComponetLogic()
+	m.CartComponetLogic()
 }
 
 func (m *MANAGER) LogicUILoop() {
@@ -59,10 +61,19 @@ func (m *MANAGER) ServiceComponetLogic() {
 
 func (m *MANAGER) ItemsActionComponetLogic() {
 	ItemsFrame := m.ui.ItemsFrame.Child(0).(*core.Frame)
-	m.ui.ItemActionFrame.ChildByName("Refresh_Button").(*core.Button).OnClick(func(e events.Event) {
+	ProductByID_Field := m.ui.ItemActionFrame.ChildByName("ProductByID_Field").(*core.TextField)
+	ProductByID_Button := m.ui.ItemActionFrame.ChildByName("ProductByID_ButtonFrame").AsTree().Child(0).(*core.Button)
+	Refresh_Button := m.ui.ItemActionFrame.ChildByName("Refresh_Button").(*core.Button)
+
+	Refresh_Button.OnClick(func(e events.Event) {
 		ItemsFrame.DeleteChildren()
 		m.data.DropItems()
 		m.data.FetchAllProduct()
 		ItemsFrame.Update()
+	})
+	ProductByID_Button.OnClick(func(e events.Event) {
+		idTemp, _ := strconv.Atoi(ProductByID_Field.Text())
+		m.data.AddCart(idTemp, 1)
+		m.UpdateCart()
 	})
 }

@@ -21,6 +21,7 @@ func (u *UIManager) ItemActionUI(parent *core.Frame) {
 	})
 
 	ProductByID_Field := core.NewTextField(u.ItemActionFrame).SetPlaceholder("Product ID")
+	ProductByID_Field.SetName("ProductByID_Field")
 	ProductByID_Field.Styler(func(s *styles.Style) {
 		u.SetZero(s)
 		u.SetSize(s, units.Dp(400), units.Dp(80))
@@ -33,6 +34,7 @@ func (u *UIManager) ItemActionUI(parent *core.Frame) {
 	})
 
 	ProductByID_ButtonFrame := u.NewFrameZero(u.ItemActionFrame, units.Dp(95), units.Dp(95))
+	ProductByID_ButtonFrame.SetName("ProductByID_ButtonFrame")
 	ProductByID_ButtonFrame.Styler(func(s *styles.Style) {
 		s.Align.Content = styles.Center
 		s.Align.Items = styles.Center
@@ -41,6 +43,7 @@ func (u *UIManager) ItemActionUI(parent *core.Frame) {
 	})
 
 	ProductByID_Button := core.NewButton(ProductByID_ButtonFrame).SetType(core.ButtonAction).SetText("Add")
+	ProductByID_Button.SetName("ProductByID_Button")
 	ProductByID_Button.Styler(func(s *styles.Style) {
 		u.SetZero(s)
 		u.SetSize(s, units.Pw(100), units.Ph(100))
