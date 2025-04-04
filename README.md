@@ -60,3 +60,41 @@ Custom RFID library:
 
 ```bash
 go run main.go
+```
+
+### Flash RFID Reader Firmware
+
+```bash
+tinygo flash -target=pico main.go
+```
+
+---
+
+## 📸 UI Overview
+
+- **ServiceStatus** – Shows backend, hardware, and WebSocket status
+- **ItemsDisplay** – Grid of products fetched from server
+- **ItemsAction** – Add items by ID, refresh or sort catalog
+- **CustomerDisplay** – Shows customer info via RFID
+- **CartsDisplay** – Dynamic cart view with quantity adjustment
+- **CartsInformation** – Summary of cart totals, tax, and discounts
+- **CartsAction** – Finalize order and send to backend
+
+---
+
+## 🙌 Acknowledgments
+
+- [NXP MFRC522 Datasheet](https://www.nxp.com/docs/en/data-sheet/MFRC522.pdf)
+- Arduino MFRC522 C++ Library (used for reference)
+- TinyGo Community
+
+---
+
+## 📃 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+> Made with ❤️ by [Ahmarii](https://github.com/Ahmarii)
+```
